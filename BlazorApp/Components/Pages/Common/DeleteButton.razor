@@ -1,0 +1,39 @@
+﻿<style>
+    .btn-delete {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        color: #FF5400;
+        border: 1px solid #FF5400 !important;
+        background-color: #fff;
+        width: 90px;
+        height: 40px;
+        padding: 10px, 13px, 9px, 13px;
+        border-radius: 4px;
+    }
+
+        .btn-delete span {
+            font-family: Microsoft Sans Serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0em;
+            text-align: center;
+            width: 41px;
+            height: 21px;
+        }
+</style>
+
+<button type="button" class="btn-delete">
+    <img src="@Icon" alt="@Text" />
+    <span>@Text</span>
+</button>
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Icon { get; set; } = string.Empty;
+}
+

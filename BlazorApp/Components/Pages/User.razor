@@ -1,7 +1,268 @@
 ﻿@page "/"
+@page "/user"
+@using BlazorApp.Model
 
-<h3>User</h3>
+<style>
+.breadcrumbs {
+    list-style:none;
+    padding: 5px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    border-bottom: 1px solid #E9EBEC !important;
+}
+/* Individual breadcrumb item */
+.breadcrumbs li {
+display: inline;
+}
 
+/* Breadcrumb link */
+.breadcrumbs li a {
+    font-weight: 400;
+    line-height: 21px;
+    text-decoration:none;
+    vertical-align: middle;
+    color: #495057;
+    padding: 20px 23px 6px 20px;
+    font-size: 15px;
+    font-family: Microsoft Sans Serif;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+    /* Hover state for breadcrumb link */
+    .breadcrumbs li a:hover {
+        border-color: #FF5400; /* Change border color on hover */
+        color: #FF5400;
+    }
+
+.txt-title {
+    font-family: Microsoft Sans Serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #495057;
+    margin-bottom: 28px;
+}
+.table{
+    /* width: 1153px;
+    height: 405px;*/
+    top: 280px;
+    left: 120px;
+    border-radius: 4px;
+    border: 1px solid #E9EBEC !important;
+    background-color: #fff;
+    }
+
+.table thead {
+    height: 72px;
+    border-radius: 4px, 4px, 0px, 0px;
+    border: 0px;
+}
+.input-box {
+    width: 311px;
+    height: 37px;
+    padding: 9px, 124px, 8px, 13px;
+    border-radius: 4px;
+    border: 1px solid #CED4DA !important;
+}
+.search-container {
+    /*position: relative;*/
+}
+.search-container input[type="text"] {
+    padding-left: 10px; /* Adjust based on the width of the icon */
+}
+
+.search-container input[type="text"]::placeholder {
+    color: #878A99; /* Placeholder text color */
+    font-family: Microsoft Sans Serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+}
+
+.btn-warning {
+    color: #fff !important;
+    background-color: #FF5400 !important;
+    border: 1px solid #FF5400 !important;
+    font-family: Microsoft Sans Serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+}
+
+.custom-thead {
+    background: linear-gradient(180deg, #FF8E32 0%, #FF5400 100%);
+}
+.custom-font-tbody-th {
+    font-family: Microsoft Sans Serif;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: center; /* Horizontal alignment */
+    vertical-align: middle;
+}
+
+.custom-font-tbody-td {
+    font-family: Microsoft Sans Serif;
+    color: #212529;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: center; /* Horizontal alignment */
+    vertical-align: middle;
+}
+
+.custom_cb {
+    background: #FF5400;
+    border-radius: 3.5px;
+    width: 15.39px;
+    height: 15.39px;
+    border-radius: 3.5px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.badge-disable {
+    background-color: #FFDDDD;
+    color: #DE3737;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+.badge-active {
+    background-color: #D9F5F0;
+    color: #28C7AC;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+</style>
+
+<div class="mb-3">
+    <ul class="breadcrumbs">
+        <li><a href="#">Users</a></li>
+        <li><a href="#">Users Group</a></li>
+        <li><a href="#">User Roles</a></li>
+        <li><a href="#">System Configuration</a></li>
+        <li><a href="#">Logs</a></li>
+    </ul>
+</div>
+<p class="txt-title">USERS</p>
+<div class="table-responsive">
+<table class="table align-middle">
+    <thead>
+        <tr>
+            <th colspan="8">
+                <div class="d-flex justify-content-between p-2">
+                    <div class="search-container">
+                        <div></div>
+                        <input class="input-box" type="text" placeholder="&#x1F50E;&#xFE0E; &nbsp;Search Name" />
+                    </div>
+                    <button type="button" class="btn btn-warning">
+                        <i class="fa-solid fa-plus fa-sm"></i>
+                        &nbsp;&nbsp;Add a New User
+                    </button>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="custom-thead">
+            <th class="custom-font-tbody-th">
+                <input class="custom_cb" type="checkbox" @bind="IsAllSelected" />
+            </th>
+            <th class="custom-font-tbody-th">Assigned To</th>
+            <th class="custom-font-tbody-th">Username</th>
+            <th class="custom-font-tbody-th">Email Address</th>
+            <th class="custom-font-tbody-th">Status</th>
+            <th class="custom-font-tbody-th">Role</th>
+            <th class="custom-font-tbody-th">Action</th>
+            <!-- Add more columns as needed -->
+        </tr>
+        @foreach (var item in Items)
+        {
+            <tr>
+                <td class="custom-font-tbody-th">
+                    <input class="custom_cb" type="checkbox" @bind="item.Selected" />
+                </td>
+                <td class="custom-font-tbody-td">@item.Column1</td>
+                <td class="custom-font-tbody-td">@item.Column2</td>
+                <td class="custom-font-tbody-td">@item.Column3</td>
+                <td class="custom-font-tbody-td">
+                    @if (item.Column4 == "Active")
+                    {
+                        <span class="badge-active">@item.Column4</span>
+                    }
+                    else if (item.Column4 == "Disable")
+                    {
+                        <span class="badge-disable">@item.Column4</span>
+                    }
+                </td>
+                <td class="custom-font-tbody-td">@item.Column5</td>
+                <td class="custom-font-tbody-td">
+                    <div class="dropdown">
+                        <button class="btn btn-light" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <!-- Add more columns as needed -->
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+<div class="mt-4">
+    <DeleteButton Icon="images/delete-icon.png" Text="Delete"/>
+</div>
 @code {
+    public List<TableItem> Items { get; set; } = new List<TableItem>();
 
+    protected override void OnInitialized()
+    {
+        // Initialize table data
+        Items = new List<TableItem>
+{
+new TableItem { Column1 = "Anathealyn :'>", Column2 = "TestUserName", Column3 = "test123@gmail.com", Column4 = "Active", Column5 = "ADMIN",
+Selected = false },
+new TableItem { Column1 = "Anathealyn :'>", Column2 = "TestUserName1", Column3 = "test123@gmail.com", Column4 = "Disable", Column5 = "ADMIN",
+Selected = false },
+new TableItem { Column1 = "Anathealyn :'>", Column2 = "TestUserName2", Column3 = "test123@gmail.com", Column4 = "Disable", Column5 = "ADMIN",
+Selected = false },
+new TableItem { Column1 = "Anathealyn :'>", Column2 = "TestUserName3", Column3 = "test123@gmail.com", Column4 = "Active", Column5 = "USER",
+Selected = false }
+// Add more items as needed 
+};
+    }
+
+    private bool _isAllSelected;
+    public bool IsAllSelected
+    {
+        get => _isAllSelected;
+        set
+        {
+            if (_isAllSelected != value)
+            {
+                _isAllSelected = value;
+                CheckAllCheckBoxes(value);
+            }
+        }
+    }
+    private void CheckAllCheckBoxes(bool isChecked)
+    {
+        foreach (var item in Items)
+        {
+            item.Selected = isChecked;
+        }
+    }
 }
