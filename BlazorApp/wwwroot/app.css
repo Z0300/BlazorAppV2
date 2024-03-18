@@ -3,6 +3,8 @@ html, body {
     padding-top: 2.2rem;
 }
 
+
+
 @media (max-width: 991.98px) {
     .offcanvas-collapse {
         position: fixed;
@@ -25,6 +27,28 @@ html, body {
         }
 }
 
+@media(max-width: 576px) {
+    #Dashboard {
+        font-size: 14px;
+    }
+
+    .spnDashboard {
+        display: none;
+    }
+}
+
+
+.btn-primary {
+    color: #fff !important;
+    background-color: #FF5400 !important;
+    border: 1px solid #FF5400 !important;
+}
+
+    .btn-primary:hover {
+        color: #fff !important;
+        background-color: #FF5400 !important;
+        border: 1px solid #FF5400 !important;
+    }
 
 .btn-nav-primary {
     font-size: 18px;
@@ -91,4 +115,8 @@ btn-outline-primary span {
 .btn-outline-primary-text {
     font-family: 'Microsoft Sans Serif';
     font-size: 11px;
+}
+
+.text-primary {
+    color: #FF5400 !important;
 }

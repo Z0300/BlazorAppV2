@@ -1,8 +1,6 @@
-﻿
-
-<nav class="navbar navbar-light navbar-expand-md fixed-top">
-    <div class="container">
-        <a class="navbar-brand">
+﻿<nav class="navbar navbar-light navbar-expand-md fixed-top">
+     <div class="container" aria-label="Main navigation">
+        <a class="navbar-brand" href="#">
             <svg width="149" height="45" viewBox="0 0 149 45" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="149" height="45" fill="url(#pattern0)" />
                 <defs>
@@ -13,19 +11,22 @@
                 </defs>
             </svg>
         </a>
-        <div class="d-flex gap-4">
-            <div class="d-flex align-items-center gap-2">
-                <span class="text-black-50">Welcome, </span>
-                <a href="#" class="text-warning" style="text-decoration:none">Admin</a>
-                <i class="fa-solid fa-angle-down fa-xs text-warning"></i>
-
-            </div>
+        <div class="d-flex align-items-center gap-2 p-3" id="Dashboard">
+            <span class="text-black-50">Welcome, </span>
+            <a href="#" class="text-primary" style="text-decoration:none">Admin</a>
+            <i class="fa-solid fa-angle-down text-primary"></i>
+            <button class="btn btn-primary">
+                <i class="fa-solid fa-house"></i>
+                <span class="spnDashboard">Dashboard</span>
+            </button>
         </div>
     </div>
+
+  
 </nav>
 
 <nav class="navbar navbar-expand-lg navbar-light mainNav">
-    <div class="container px-4 px-md-3 flex-wrap flex-md-nowrap " aria-label="Main navigation">
+    <div class="container px-4 px-md-3 flex-wrap flex-md-nowrap" aria-label="Main navigation">
         <a class="navbar-brand" href="#">
             <ActiveMenu Icon="images/settings-icon.png" Text="Settings" />
         </a>
