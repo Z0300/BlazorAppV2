@@ -1,4 +1,5 @@
 ﻿
+
 <nav class="navbar navbar-light navbar-expand-md fixed-top">
     <div class="container">
         <a class="navbar-brand">
@@ -25,43 +26,41 @@
 
 <nav class="navbar navbar-expand-lg navbar-light mainNav">
     <div class="container px-4 px-md-3 flex-wrap flex-md-nowrap " aria-label="Main navigation">
-        <a class="navbar-brand" href="#">BlazorApp</a>
+        <a class="navbar-brand" href="#">
+            <ActiveMenu Icon="images/settings-icon.png" Text="Settings" />
+        </a>
         <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        Home
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="#">
-                        Counter
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="#">
-                        Show data
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="#">
-                        Form
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="#">
-                        Requires auth
-                    </NavLink>
-                </li>
-            </ul>
-            <hr class="d-md-none text-white-50">
-            <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+            <ul class="navbar-nav ms-md-auto">
+                @foreach (var item in MenuItem)
+                {
+                    <MenuItem Icon="@item.Value" Text="@item.Key" />
+                }
             </ul>
         </div>
     </div>
 </nav>
+
+
+@code {
+
+    private Dictionary<string, string> MenuItem { get; set; } = new Dictionary<string, string>();
+
+    protected override void OnInitialized()
+    {
+        MenuItem = new Dictionary<string, string>
+        {
+            { "Messages", "images/messages.png" },
+            { "Keywords", "images/keyword.png" },
+            { "Contacts", "images/contacts.png" },
+            { "Notifications", "images/notification.png" },
+            { "Reports", "images/reports.png" },
+            { "Pollster", "images/poll.png" },
+            { "Scheduler", "images/scheduler.png" }
+        };
+    }
+}
 

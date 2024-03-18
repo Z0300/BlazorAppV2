@@ -1,5 +1,11 @@
-﻿<h3>ActiveMenu</h3>
-
+﻿<button class="btn btn-active-primary">
+    <img src="@Icon" alt="@Text" />
+    <span>@Text</span>
+</button>
 @code {
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
 
+    [Parameter]
+    public string Icon { get; set; } = string.Empty;
 }

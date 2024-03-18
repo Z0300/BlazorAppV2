@@ -1,5 +1,18 @@
-﻿<h3>MenuItem</h3>
+﻿<li class="nav-item">
+    <NavLink class="nav-link" href="#">
+        <button class="btn btn-outline-primary">
+            <img src="@Icon" alt="@Text" />
+            <span class="btn-outline-primary-text">@Text</span>
+        </button>
+      @*   <span class="d-lg">@Text</span> *@
+    </NavLink>
+</li>
 
 @code {
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
 
+    [Parameter]
+    public string Icon { get; set; } = string.Empty;
 }
+
